@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dukwjthx0bybf"]
+[gd_scene load_steps=2 format=3 uid="uid://dukwjthx0bybf"]
 
 [ext_resource type="Texture2D" uid="uid://dysedhnhptaku" path="res://assets/sprites/background-day.png" id="1_6h4vt"]
-[ext_resource type="Texture2D" uid="uid://dj8xtmysoq8ms" path="res://assets/sprites/base.png" id="2_v33sx"]
 
 [node name="Background" type="ParallaxBackground"]
 
@@ -11,15 +10,5 @@ motion_mirroring = Vector2(288, 0)
 [node name="Back" type="Sprite2D" parent="ParallaxLayer"]
 texture_filter = 1
 position = Vector2(144, 255.222)
-scale = Vector2(1, 1)
 texture = ExtResource("1_6h4vt")
-metadata/_edit_lock_ = true
-
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
-motion_mirroring = Vector2(288, 0)
-
-[node name="Floor" type="Sprite2D" parent="ParallaxLayer2"]
-position = Vector2(144, 463)
-scale = Vector2(0.857143, 0.857143)
-texture = ExtResource("2_v33sx")
 metadata/_edit_lock_ = true

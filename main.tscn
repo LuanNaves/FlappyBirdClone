@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://mybyn3yufj7t"]
+[gd_scene load_steps=6 format=3 uid="uid://mybyn3yufj7t"]
 
 [ext_resource type="PackedScene" uid="uid://dukwjthx0bybf" path="res://scenes/background.tscn" id="1_ln410"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_osm7o"]
 [ext_resource type="PackedScene" uid="uid://blysrnt3dhtk2" path="res://scenes/floor.tscn" id="2_0v81y"]
 [ext_resource type="PackedScene" uid="uid://cdyo5i8qst7al" path="res://scenes/player.tscn" id="2_0wqq6"]
+[ext_resource type="PackedScene" uid="uid://cvbnfgue0b5sc" path="res://scenes/pipe.tscn" id="5_8nt55"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_osm7o")
 
 [node name="Background" parent="." instance=ExtResource("1_ln410")]
 
@@ -13,4 +16,4 @@ position = Vector2(100, 250)
 
 [node name="Floor" parent="." instance=ExtResource("2_0v81y")]
 
-[node name="Pipes" type="Node" parent="."]
+[node name="Pipe" parent="." instance=ExtResource("5_8nt55")]

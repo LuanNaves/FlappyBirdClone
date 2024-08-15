@@ -1,12 +1,11 @@
 extends Node2D
 
-signal score
 var SPEED = 100
 
 func _ready():
 	position.x = 500
 	
-func _process(delta):
+func _physics_process(delta):
 	position.x -= SPEED * delta
 	if global_position.x < -100:
 		queue_free()
@@ -18,6 +17,5 @@ func _on_pipe_body_entered(body):
 
 func _on_score_area_body_exited(body):
 	if body is Player:
-		print("scored")
-		emit_signal("score")
+		Global.SCORE += 1
 

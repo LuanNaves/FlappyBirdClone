@@ -11,9 +11,9 @@ func _on_timer_timeout():
 	spawn_pipes()
 
 func spawn_pipes():
-	var pipe = OBSTACLE.instantiate()
-	add_child(pipe)
-	pipe.position.y = randi() % 300 + 100
+	var obstacle = OBSTACLE.instantiate()
+	add_child(obstacle)
+	obstacle.position.y = randi_range(100, 320)
 	
 func start():
 	timer.start()

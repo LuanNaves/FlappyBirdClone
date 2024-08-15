@@ -20,4 +20,6 @@ layer = 0
 [node name="PipeSpawner" parent="." instance=ExtResource("5_b2kf0")]
 
 [node name="Player" parent="." instance=ExtResource("2_0wqq6")]
-position = Vector2(100, 250)
+position = Vector2(83, 250)
+
+[connection signal="died" from="Player" to="." method="_on_player_died"]

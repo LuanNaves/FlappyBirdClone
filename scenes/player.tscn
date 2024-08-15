@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cdyo5i8qst7al"]
+[gd_scene load_steps=10 format=3 uid="uid://cdyo5i8qst7al"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_7ec5x"]
 [ext_resource type="Texture2D" uid="uid://g02n7hluaf5a" path="res://assets/sprites/yellowbird-midflap.png" id="1_v54w4"]
@@ -9,31 +9,111 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_v54w4")
+"texture": ExtResource("3_36kr2")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 8.0
 }, {
+"frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_e07xk")
+}],
+"loop": true,
+"name": &"flap",
+"speed": 8.0
 }, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_v54w4")
+}, {
+"duration": 2.0,
+"texture": ExtResource("3_36kr2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_v54w4")
+}, {
+"duration": 2.0,
+"texture": ExtResource("2_e07xk")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}, {
+"frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_v54w4")
 }, {
 "duration": 1.0,
 "texture": ExtResource("3_36kr2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_v54w4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_e07xk")
 }],
 "loop": true,
-"name": &"default",
+"name": &"transition",
 "speed": 8.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2wlmr"]
 radius = 13.0
 
+[sub_resource type="Animation" id="Animation_vo2ah"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -5), Vector2(0, 5)]
+}
+
+[sub_resource type="Animation" id="Animation_airwa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b4pen"]
+_data = {
+"RESET": SubResource("Animation_airwa"),
+"idle": SubResource("Animation_vo2ah")
+}
+
 [node name="Player" type="CharacterBody2D"]
+top_level = true
 script = ExtResource("1_7ec5x")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -5)
 sprite_frames = SubResource("SpriteFrames_jqbib")
-frame_progress = 0.394925
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.600859
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_2wlmr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_b4pen")
+}
+autoplay = "idle"

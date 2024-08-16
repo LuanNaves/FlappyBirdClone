@@ -1,14 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://mybyn3yufj7t"]
+[gd_scene load_steps=8 format=3 uid="uid://mybyn3yufj7t"]
 
 [ext_resource type="PackedScene" uid="uid://dukwjthx0bybf" path="res://scenes/background.tscn" id="1_ln410"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_osm7o"]
 [ext_resource type="PackedScene" uid="uid://blysrnt3dhtk2" path="res://scenes/floor.tscn" id="2_0v81y"]
 [ext_resource type="PackedScene" uid="uid://cdyo5i8qst7al" path="res://scenes/player.tscn" id="2_0wqq6"]
+[ext_resource type="PackedScene" uid="uid://c3khjoqw21q61" path="res://scenes/menu.tscn" id="2_ujupd"]
 [ext_resource type="PackedScene" uid="uid://db5cnyj60trg5" path="res://scenes/pipe_spawner.tscn" id="5_b2kf0"]
 [ext_resource type="PackedScene" uid="uid://bireu8f4ou563" path="res://scenes/hud.tscn" id="6_c1ky6"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_osm7o")
+
+[node name="Menu" parent="." instance=ExtResource("2_ujupd")]
 
 [node name="HUD" parent="." instance=ExtResource("6_c1ky6")]
 
@@ -20,6 +23,7 @@ layer = 0
 [node name="PipeSpawner" parent="." instance=ExtResource("5_b2kf0")]
 
 [node name="Player" parent="." instance=ExtResource("2_0wqq6")]
-position = Vector2(83, 250)
+position = Vector2(66, 288)
 
+[connection signal="start_game" from="Menu" to="." method="_on_menu_start_game"]
 [connection signal="died" from="Player" to="." method="_on_player_died"]

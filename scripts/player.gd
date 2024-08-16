@@ -6,6 +6,7 @@ const MAX_ROTATION_DEGREE = -30
 
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var animation_player = $AnimationPlayer
+@onready var collision_shape = $CollisionShape2D
 
 signal died
 var is_alive = true
@@ -27,26 +28,25 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	# Handle jump.
-	if is_alive:
-		if Input.is_action_just_pressed("flap"):
-			if !started:
-				start()
-			velocity.y = JUMP_VELOCITY
-		# Controlling the animation
-		if started:
-			if velocity.y < -100:
-				animated_sprite.play("flap")
-			elif velocity.y > 0:
-				animated_sprite.play("fall")
-			else:
-				animated_sprite.play("transition")
+	if Input.is_action_just_pressed("flap") and is_alive:
+		if !started:
+			start()
+		velocity.y = JUMP_VELOCITY
+	# Controlling the animation
+	if started:
+		if velocity.y < -100:
+			animated_sprite.play("flap")
+		elif velocity.y > 0:
+			animated_sprite.play("fall")
 		else:
-			animated_sprite.play("idle")
+			animated_sprite.play("transition")
+	else:
+		animated_sprite.play("idle")
 	move_and_slide()
 	
 	
 func die():
-	if is_alive == false : return
+	if !is_alive : return
 	is_alive = false
 	animated_sprite.stop()
 	emit_signal("died")

@@ -1,9 +1,11 @@
 extends Node2D
 
+signal score
+
 var SPEED = 100
 
 func _ready():
-	position.x = 500
+	position.x = 300
 	
 func _physics_process(delta):
 	position.x -= SPEED * delta
@@ -17,5 +19,5 @@ func _on_pipe_body_entered(body):
 
 func _on_score_area_body_exited(body):
 	if body is Player:
-		Global.SCORE += 1
+		emit_signal("score")
 

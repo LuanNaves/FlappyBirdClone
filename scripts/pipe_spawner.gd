@@ -1,5 +1,7 @@
 extends Node
 
+signal obstacle_created
+
 @onready var timer = $Timer
 const OBSTACLE = preload("res://scenes/obstacle.tscn")
 
@@ -14,6 +16,7 @@ func spawn_pipes():
 	var obstacle = OBSTACLE.instantiate()
 	add_child(obstacle)
 	obstacle.position.y = randi_range(100, 320)
+	emit_signal("obstacle_created", obstacle)
 	
 func start():
 	timer.start()

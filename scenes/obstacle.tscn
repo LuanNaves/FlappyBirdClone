@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://bdcj2iwdf20bn"]
+[gd_scene load_steps=5 format=3 uid="uid://bdcj2iwdf20bn"]
 
 [ext_resource type="Script" path="res://scripts/obstacle.gd" id="1_2agpb"]
 [ext_resource type="PackedScene" uid="uid://cvbnfgue0b5sc" path="res://scenes/pipe.tscn" id="1_y68n2"]
+[ext_resource type="AudioStream" uid="uid://djsmimqxbo80t" path="res://assets/audio/point.wav" id="3_gxsde"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aljnw"]
-size = Vector2(39, 133)
+size = Vector2(28, 664)
 
 [node name="Obstacle" type="Node2D" groups=["obstacles"]]
 position = Vector2(0, 256)
@@ -20,8 +21,11 @@ rotation = 3.14159
 [node name="ScoreArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreArea"]
-position = Vector2(-0.5, -0.5)
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_aljnw")
+
+[node name="Point" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_gxsde")
 
 [connection signal="body_entered" from="PipeBottom" to="." method="_on_pipe_body_entered"]
 [connection signal="body_entered" from="PipeTop" to="." method="_on_pipe_body_entered"]

@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://blysrnt3dhtk2"]
+[gd_scene load_steps=5 format=3 uid="uid://blysrnt3dhtk2"]
 
 [ext_resource type="Texture2D" uid="uid://dj8xtmysoq8ms" path="res://assets/sprites/base.png" id="1_vpwjt"]
 [ext_resource type="Script" path="res://scripts/floor.gd" id="1_yhhre"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j4hul"]
+size = Vector2(668.5, 108.719)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lo3sx"]
-size = Vector2(668.5, 109.667)
+size = Vector2(668.5, 111.563)
 
 [node name="Floor" type="ParallaxBackground"]
 script = ExtResource("1_yhhre")
@@ -18,10 +21,18 @@ position = Vector2(144, 464)
 scale = Vector2(0.857143, 0.857143)
 texture = ExtResource("1_vpwjt")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="ParallaxLayer"]
+[node name="DeathZone" type="Area2D" parent="ParallaxLayer"]
 position = Vector2(144, 464)
 scale = Vector2(0.857143, 0.857143)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ParallaxLayer/StaticBody2D"]
-position = Vector2(166.25, 1.16669)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParallaxLayer/DeathZone"]
+position = Vector2(166.25, -0.473816)
+shape = SubResource("RectangleShape2D_j4hul")
+
+[node name="FloorCollision" type="StaticBody2D" parent="ParallaxLayer"]
+position = Vector2(144, 464)
+scale = Vector2(0.857143, 0.857143)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParallaxLayer/FloorCollision"]
+position = Vector2(166.25, 2.11469)
 shape = SubResource("RectangleShape2D_lo3sx")

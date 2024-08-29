@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var pipe_spawner = $PipeSpawner
-@onready var floor = $Floor
+@onready var game_floor = $Floor
 @onready var background = $Background
 @onready var menu = $Menu
 @onready var hud = $HUD
@@ -29,12 +29,11 @@ func new_game():
 	pipe_spawner.start()
 	
 func _on_player_died():
-	hud.visible = false
 	game_over()
 
 func game_over():
 	pipe_spawner.stop()
-	floor.stop()
+	game_floor.stop()
 	background.stop()
 	get_tree().call_group("obstacles", "set_physics_process", false)
 	
@@ -59,4 +58,7 @@ func load_highscore():
 		highscore = save_data.get_var()
 		save_data.close()
 	
-
+func _on_death_zone_body_entered(body):
+	if body is Player:
+		if body.has_method("die"):
+			body.die()

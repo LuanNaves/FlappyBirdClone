@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dcl00tywaxh1v" path="res://assets/sprites/pipe-green.png" id="1_bh35l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_65c17"]
-size = Vector2(44, 283)
+size = Vector2(44, 874)
 
 [node name="Pipe" type="Area2D"]
 
@@ -13,5 +13,5 @@ scale = Vector2(0.884615, 0.886058)
 texture = ExtResource("1_bh35l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 141.5)
+position = Vector2(0, 437)
 shape = SubResource("RectangleShape2D_65c17")

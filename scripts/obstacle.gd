@@ -4,6 +4,8 @@ signal score
 
 var SPEED = 100
 
+@onready var point = $Point
+
 func _ready():
 	position.x = 300
 	
@@ -19,5 +21,6 @@ func _on_pipe_body_entered(body):
 
 func _on_score_area_body_exited(body):
 	if body is Player:
+		point.play()
 		emit_signal("score")
 

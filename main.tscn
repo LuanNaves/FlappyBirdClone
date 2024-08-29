@@ -26,4 +26,7 @@ layer = 0
 position = Vector2(66, 288)
 
 [connection signal="start_game" from="Menu" to="." method="_on_menu_start_game"]
+[connection signal="body_entered" from="Floor/ParallaxLayer/DeathZone" to="." method="_on_death_zone_body_entered"]
 [connection signal="died" from="Player" to="." method="_on_player_died"]
+
+[editable path="Floor"]
